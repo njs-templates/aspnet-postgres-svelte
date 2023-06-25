@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"svelte.svelte-vscode",
+		"ms-vscode.vscode-typescript-next",
+		"bradlc.vscode-tailwindcss",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"davidanson.vscode-markdownlint",
+		"streetsidesoftware.code-spell-checker",
+		"gruntfuggly.todo-tree",
+		"donjayamanne.githistory",
+		"mhutchie.git-graph"
+	]
+}

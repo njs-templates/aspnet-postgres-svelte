@@ -1,0 +1,23 @@
+/* Delete this url */
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	font-family: "Cabin", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+
+	color-scheme: light dark;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+h1 {
+	@apply text-4xl;
+}
