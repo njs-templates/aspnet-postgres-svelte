@@ -10,5 +10,5 @@ public class BackendContext : DbContext
 	{
 	}
 
-	public DbSet<TodoItem> TodoItems;
+	public DbSet<TodoItem> TodoItems { get; set; }
 }
