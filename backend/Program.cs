@@ -5,8 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration
 	.SetBasePath(Directory.GetCurrentDirectory())
-	.AddJsonFile("appsettings.json", true)
-	.AddEnvironmentVariables();
+	.AddJsonFile("appsettings.json", true);
 
 // Add services to the container.
 
