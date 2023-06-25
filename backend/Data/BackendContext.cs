@@ -1,3 +1,4 @@
+using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend;
@@ -8,4 +9,6 @@ public class BackendContext : DbContext
 	: base(options)
 	{
 	}
+
+	public DbSet<TodoItem> TodoItems;
 }
