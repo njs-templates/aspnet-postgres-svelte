@@ -3,7 +3,7 @@ import NavLink from "$lib/components/NavLink.svelte";
 
 // Define href's here
 const homeHref = "/";
-const otherHref = "/other";
+const aboutHref = "/about";
 </script>
 
 <div
@@ -15,7 +15,7 @@ const otherHref = "/other";
 		href={homeHref}
 	/>
 	<NavLink
-		label="Other page"
-		href={otherHref}
+		label="About"
+		href={aboutHref}
 	/>
 </div>
