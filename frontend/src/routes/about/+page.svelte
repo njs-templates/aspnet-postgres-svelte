@@ -44,11 +44,6 @@ import HelloWorld from "$lib/components/HelloWorld.svelte";
 </main>
 
 <style scoped>
-.main-content {
-	@apply flex place-content-center;
-	margin: 0 auto;
-}
-
 .logo {
 	height: 10em;
 	padding: 1.5em;
