@@ -28,8 +28,14 @@ const testData: todoItem[] = [
 <main>
 	<!-- <h1>wow</h1> -->
 	{#each testData as item}
-		<p>id: {item.id}</p>
-		<p>label: {item.label}</p>
-		<p>completed: {item.completed}</p>
+		<div class="flex flex-row place-content-center gap-4">
+			<p class="">{item.label}</p>
+			<input
+				type="checkbox"
+				checked={item.completed}
+				class="checkbox checkbox-primary justify-end"
+			/>
+			<div class="justify-self-center" />
+		</div>
 	{/each}
 </main>

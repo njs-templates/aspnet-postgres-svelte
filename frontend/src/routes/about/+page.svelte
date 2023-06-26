@@ -5,7 +5,7 @@ import HelloWorld from "$lib/components/HelloWorld.svelte";
 </script>
 
 <main>
-	<div class="main-content">
+	<div class="main-content flex justify-center">
 		<a
 			href="https://vitejs.dev"
 			target="_blank"
