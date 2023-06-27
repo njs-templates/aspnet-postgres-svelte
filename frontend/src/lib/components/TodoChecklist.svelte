@@ -18,6 +18,9 @@ async function getTodos() {
 		const res = await axios.get(baseUrl + "TodoItems");
 		return res;
 	} catch (err) {
+		console.error(
+			"Error. Get request was not successful. Postgres may not be running."
+		);
 		console.error(err);
 	}
 }
@@ -34,9 +37,6 @@ onMount(async () => {
 			console.log(response.data);
 			data = response.data;
 		} else {
-			console.error(
-				"Error. Get request was not successful. Postgres may not be running."
-			);
 			console.error(response);
 		}
 	} else {
