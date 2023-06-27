@@ -14,7 +14,6 @@ export let label: string;
 	{href}
 	on:click={() => {
 		setPageStore(href);
-		console.log(currentPage);
 	}}
 	class={currentPage === href
 		? "tab tab-bordered tab-active"
