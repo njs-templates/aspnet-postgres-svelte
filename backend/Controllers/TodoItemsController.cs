@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
-	[EnableCors("AllowSpecificOrigins")]
+	[EnableCors("Default")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class TodoItemsController : ControllerBase

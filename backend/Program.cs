@@ -23,19 +23,22 @@ static string createConnectionString()
 		"Host={0};Database={1};Username={2};Password={3};",
 		host, database, username, password
 	);
-	string msg = string.Format("Created connection string: {0}", output);
 
-	Console.WriteLine(msg);
+	// string msg = string.Format("Created connection string: {0}", output);
+	// Console.WriteLine(msg);
 
 	return output;
 }
 
 builder.Services.AddCors(options =>
 {
-	options.AddPolicy(name: "AllowSpecificOrigins", policy =>
+	options.AddPolicy(name: "Default", policy =>
 	{
 		policy
 			.WithOrigins("http://localhost:5173")
+			// You may need to change .WithOrigins() to .AllowAnyOrigin()
+			// if you host this publicly.
+			// .AllowAnyOrigin()
 			.WithHeaders("Content-Type", "Authorization", "X-Requested-With")
 			.WithMethods("GET", "POST", "PUT", "DELETE");
 	});

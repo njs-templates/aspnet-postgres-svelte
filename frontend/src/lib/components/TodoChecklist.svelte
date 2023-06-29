@@ -42,13 +42,11 @@ async function updateCompleted(item: todoItem) {
 	const url: string = todoUrl + String(item.id);
 
 	try {
-		const res = await axios.put(url, {
+		await axios.put(url, {
 			id: item.id,
 			label: item.label,
 			completed: !item.completed,
 		});
-
-		return res.data.completed;
 	} catch (err) {
 		console.error(err);
 	}
