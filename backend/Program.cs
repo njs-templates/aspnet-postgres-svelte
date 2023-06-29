@@ -30,12 +30,14 @@ static string createConnectionString()
 	return output;
 }
 
-var AllowSpecificOrigins = "_allowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
-	options.AddPolicy(name: AllowSpecificOrigins, policy =>
+	options.AddPolicy(name: "AllowSpecificOrigins", policy =>
 	{
-		policy.WithOrigins("http://localhost:5173");
+		policy
+			.WithOrigins("http://localhost:5173")
+			.WithHeaders("Content-Type", "Authorization", "X-Requested-With")
+			.WithMethods("GET", "POST", "PUT", "DELETE");
 	});
 });
 
@@ -62,7 +64,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(AllowSpecificOrigins);
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 

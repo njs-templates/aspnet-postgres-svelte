@@ -11,16 +11,45 @@ interface todoItem {
 let data: todoItem[] = [];
 
 const baseUrl = "http://localhost:5048/api/";
+const todoUrl = baseUrl + "TodoItems/";
 const debug = false;
 
 async function getTodos() {
 	try {
-		const res = await axios.get(baseUrl + "TodoItems");
+		const res = await axios.get(todoUrl);
 		return res;
 	} catch (err) {
 		console.error(
 			"Error. Get request was not successful. Postgres may not be running."
 		);
+		console.error(err);
+	}
+}
+
+async function getTodoFromId(id: number) {
+	const url: string = todoUrl + String(id);
+
+	try {
+		const res = await axios.get(url);
+
+		return res.data;
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+async function updateCompleted(item: todoItem) {
+	const url: string = todoUrl + String(item.id);
+
+	try {
+		const res = await axios.put(url, {
+			id: item.id,
+			label: item.label,
+			completed: !item.completed,
+		});
+
+		return res.data.completed;
+	} catch (err) {
 		console.error(err);
 	}
 }
@@ -72,6 +101,7 @@ onMount(async () => {
 			<input
 				type="checkbox"
 				checked={item.completed}
+				on:change={updateCompleted(item)}
 				class="checkbox checkbox-primary justify-end"
 			/>
 			<div class="justify-self-center" />
