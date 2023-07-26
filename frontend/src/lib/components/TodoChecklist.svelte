@@ -8,6 +8,7 @@ interface todoItem {
 	completed: boolean;
 }
 
+let textInput: string;
 let data: todoItem[] = [];
 
 const baseUrl = "http://localhost:5048/api/";
@@ -62,6 +63,21 @@ async function deleteTodo(id: number) {
 	}
 }
 
+async function newTodo(label: string) {
+	if (label === "" || label === undefined) {
+		label = "Todo";
+	}
+
+	console.log(label);
+
+	try {
+		const data = { label: label, completed: false };
+		await axios.post(todoUrl, data);
+	} catch (err) {
+		console.error(err);
+	}
+}
+
 async function refreshData() {
 	const response = await getTodos();
 
@@ -107,6 +123,21 @@ onMount(async () => {
 
 <main>
 	<div class="flex flex-col gap-2">
+		<div class="flex flex-row gap-2">
+			<input
+				bind:value={textInput}
+				type="text"
+				placeholder="Label"
+				class="input input-bordered input-primary input-sm w-full max-w-xs"
+			/>
+			<btn
+				class="btn btn-sm btn-primary"
+				on:click={async () => {
+					await newTodo(textInput);
+					refreshData();
+				}}>Add</btn
+			>
+		</div>
 		{#each data as item}
 			<div class="flex flex-row place-content-center gap-2">
 				<p class="">{item.label}</p>
