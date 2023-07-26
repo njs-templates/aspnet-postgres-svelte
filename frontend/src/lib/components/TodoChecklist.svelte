@@ -52,20 +52,34 @@ async function updateCompleted(item: todoItem) {
 	}
 }
 
+async function deleteTodo(id: number) {
+	const url: string = todoUrl + String(id);
+
+	try {
+		await axios.delete(url);
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+async function refreshData() {
+	const response = await getTodos();
+
+	if (response === undefined) {
+		return;
+	}
+
+	if (response.status === 200) {
+		console.log(response.data);
+		data = response.data;
+	} else {
+		console.error(response);
+	}
+}
+
 onMount(async () => {
 	if (debug === false) {
-		const response = await getTodos();
-
-		if (response === undefined) {
-			return;
-		}
-
-		if (response.status === 200) {
-			console.log(response.data);
-			data = response.data;
-		} else {
-			console.error(response);
-		}
+		refreshData();
 	} else {
 		const testData: todoItem[] = [
 			// Note: for legal reasons, this is a joke.
@@ -92,17 +106,25 @@ onMount(async () => {
 </script>
 
 <main>
-	<!-- <h1>wow</h1> -->
-	{#each data as item}
-		<div class="flex flex-row place-content-center gap-4">
-			<p class="">{item.label}</p>
-			<input
-				type="checkbox"
-				checked={item.completed}
-				on:change={updateCompleted(item)}
-				class="checkbox checkbox-primary justify-end"
-			/>
-			<div class="justify-self-center" />
-		</div>
-	{/each}
+	<div class="flex flex-col gap-2">
+		{#each data as item}
+			<div class="flex flex-row place-content-center gap-2">
+				<p class="">{item.label}</p>
+				<input
+					type="checkbox"
+					checked={item.completed}
+					on:change={updateCompleted(item)}
+					class="checkbox checkbox-primary justify-end"
+				/>
+				<btn
+					class="btn btn-sm btn-error"
+					on:click={async () => {
+						await deleteTodo(item.id);
+						refreshData();
+					}}>Delete</btn
+				>
+				<div class="justify-self-center" />
+			</div>
+		{/each}
+	</div>
 </main>
