@@ -93,6 +93,16 @@ async function refreshData() {
 	}
 }
 
+async function onAddClick() {
+	await newTodo(textInput);
+	refreshData();
+}
+
+async function onDeleteClick(id: number) {
+	await deleteTodo(id);
+	refreshData();
+}
+
 onMount(async () => {
 	if (debug === false) {
 		refreshData();
@@ -131,11 +141,11 @@ onMount(async () => {
 				class="input input-bordered input-primary input-sm w-full max-w-xs"
 			/>
 			<btn
+				tabindex="0"
+				role="button"
 				class="btn btn-sm btn-primary"
-				on:click={async () => {
-					await newTodo(textInput);
-					refreshData();
-				}}>Add</btn
+				on:click={async () => await onAddClick()}
+				on:keypress={async () => await onAddClick()}>Add</btn
 			>
 		</div>
 		{#each data as item}
@@ -144,15 +154,16 @@ onMount(async () => {
 				<input
 					type="checkbox"
 					checked={item.completed}
-					on:change={updateCompleted(item)}
+					on:change={async () => await updateCompleted(item)}
 					class="checkbox checkbox-primary justify-end"
 				/>
 				<btn
+					tabindex="0"
+					role="button"
 					class="btn btn-sm btn-error"
-					on:click={async () => {
-						await deleteTodo(item.id);
-						refreshData();
-					}}>Delete</btn
+					on:click={async () => await onDeleteClick(item.id)}
+					on:keypress={async () => await onDeleteClick(item.id)}
+					>Delete</btn
 				>
 				<div class="justify-self-center" />
 			</div>

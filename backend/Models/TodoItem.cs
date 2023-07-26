@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace Backend.Models;
+
+// Models are tables in the database
 
 public class TodoItem
 {

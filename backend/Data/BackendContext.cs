@@ -10,5 +10,6 @@ public class BackendContext : DbContext
 	{
 	}
 
+	// Tables here
 	public DbSet<TodoItem> TodoItems { get; set; } = null!;
 }
